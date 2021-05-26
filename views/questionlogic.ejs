@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 style="text-align:center;">Welcome To Quiz</h2>
+    <div class="quiz-section">
+        <h2 id="question"></h2>
+        <input id="oOne" onchange="hello(value,1)"  type="radio" name="options" value=""><span id="firstOptionText"></span>
+        <input id="oTwo" onchange="hello(value,2)"  type="radio" name="options" value=""><span id="secondOptionText"></span>
+        <input id="oThree" onchange="hello(value,3)" type="radio" name="options" value=""><span id="thirdOptionText"></span>
+        <input id="oFour" onchange="hello(value,4)"  type="radio" name="options" value=""><span id="fourthOptionText"></span>
+    </div>
+    <button id="previous">Previous</button>
+    <button id="next">Next</button>
+
+    <script>
+        let correctAnswer =[]
+        let counter = 0;
+        let userSelectedOption = [
+            {
+                selectedOption: "none",
+                option: -1
+        },
+        {
+            selectedOption: "none",
+            option: -1
+        },
+        {
+            selectedOption: "none",
+                option: -1
+        },
+        {
+            selectedOption: "none",
+                option: -1
+        }
+    ];
+    console.log(userSelectedOption);
+        // Random Number Generation For Correct Option 
+        let correctOptionNumber = Math.floor(Math.random()*(5-1)+1);
+        console.log(correctOptionNumber);
+        const previousBtn = document.getElementById("previous");
+        const nextBtn = document.getElementById("next");
+        /* Question and Option Code */
+        const question = document.getElementById("question");
+        const firstOption = document.getElementById("oOne");
+        const secondOption = document.getElementById("oTwo");
+        const thirdOption = document.getElementById("oThree");
+        const fourthOption = document.getElementById("oFour");
+        // Span Tags Of Options
+        const firstOptionText = document.getElementById("firstOptionText");
+        const secondOptionText = document.getElementById("secondOptionText");
+        const thirdOptionText = document.getElementById("thirdOptionText");
+        const fourthOptionText = document.getElementById("fourthOptionText");
+        /* Radio Button */
+        let ele = document.getElementsByName('options'); 
+        getFirstQuestion();
+        
+        nextBtn.addEventListener("click",(e)=>{
+           for(let i=0;i<ele.length;i++){
+               ele[i].checked=false;
+           }
+           correctOptionNumber =  Math.floor(Math.random()*(5-1)+1);
+           console.log(correctOptionNumber);
+            counter=counter+1;
+            getQuestion();
+        })
+        previousBtn.addEventListener("click",(e)=>{
+            counter=counter-1;
+            correctOptionNumber = Math.floor(Math.random()*(5-1) + 1);
+            getQuestion();
+        })
+
+        function hello(value,number){
+            console.log("checked");
+            userSelectedOption[counter] = {
+                selectedOption: value,
+                option: number
+            }
+            console.log(userSelectedOption);
+        }
+       
+        async function getQuestion(){
+            const res = await fetch(`/findQuestion/${counter}`);
+            const data = await res.json();
+            correctAnswer[counter] = data.correctAnswer;
+            console.log(data);
+            console.log("correct answer");
+            console.log(correctAnswer);
+            console.log("counter",counter);
+            question.innerHTML = data.question;
+          
+                firstOption.value = data.firstOption;
+                firstOptionText.innerHTML = data.firstOption;
+                secondOption.value = data.secondOption;
+                secondOptionText.innerHTML = data.secondOption;
+                thirdOption.value = data.thirdOption;
+                thirdOptionText.innerHTML = data.thirdOption;
+                fourthOption.value = data.fourthOption;
+                fourthOptionText.innerHTML = data.fourthOption;
+                 
+                if(userSelectedOption[counter].option!=-1){
+
+                    let choosenOne = userSelectedOption[counter].option;
+                    console.log(choosenOne);
+                    if(choosenOne == 1){
+                        firstOption.checked = true;
+                    }
+                    else if(choosenOne == 2){
+                        secondOption.checked=true;
+                    }
+                    else if(choosenOne == 3){
+                        thirdOption.checked = true;
+                    }
+                    else if(choosenOne == 4){
+                        fourthOption.checked = true;
+                    }
+                    
+                }
+                else{
+                    firstOption.checked=false;
+                    secondOption.checked=false;
+                    thirdOption.checked=false;
+                    fourthOption.checked=false;
+                }
+           
+               
+            
+           
+        }
+        
+        /* Get First Question */
+        async function getFirstQuestion(){
+            const res = await fetch(`/findQuestion/${counter}`);
+            const data = await res.json();
+            correctAnswer[counter] = data.correctAnswer;
+            console.log(data);
+            console.log("correct answer");
+            console.log(correctAnswer);
+            console.log("counter",counter);
+            question.innerHTML = data.question;
+          
+                firstOption.value = data.firstOption;
+                firstOptionText.innerHTML = data.firstOption;
+                secondOption.value = data.secondOption;
+                secondOptionText.innerHTML = data.secondOption;
+                thirdOption.value = data.thirdOption;
+                thirdOptionText.innerHTML = data.thirdOption;
+                fourthOption.value = data.fourthOption;
+                fourthOptionText.innerHTML = data.fourthOption;
+        }
+        
+        
+    </script>
+</body>
+</html>
