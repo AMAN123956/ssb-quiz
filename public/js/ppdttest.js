@@ -24,93 +24,37 @@ const highScore = document.querySelectorAll(".highScore");
 console.log(highScore);
 // type of user
 const type = document.getElementById("typeOfUser").innerHTML;
+console.log("type",type)
 // first time user form
-const firstOIR = document.getElementById("firstOIR");
+const firstOIR = document.getElementById("firstPPDT");
 // returning user form
-const returnOIR = document.getElementById("returnOIR");
-
+const returnOIR = document.getElementById("returnPPDT");
+console.log(firstOIR);
 const submitBtn = document.getElementById("submit");
-const attemptedQuestion = document.getElementById("attemptedQuestion");
-const correctQuestion = document.getElementById("correctQuestion");
-const inCorrectQuestion = document.getElementById("inCorrectQuestion");
-const totalQues = document.getElementById("totalQuestion");
-const scoreBox = document.getElementById("scoreBox");
-const percentage = document.getElementById("percentage");
-const remarks = document.getElementById("remarks");
 
-// Circles at the top to track user's progress
-const circle = document.querySelectorAll(".circle");
-console.log(circle);
+
 
 /* On Click of Submit Btn 
    1.Display result section
    2.Hide Quiz-Box Section
 */
-
+ // new user
+ if (type == 1) {
+    console.log("it runs")
+    firstOIR.style.display = "block";
+    returnOIR.style.display = "none";
+}
+// old user
+else {
+    firstOIR.style.display = "none";
+    returnOIR.style.display = "block";
+}
 
 submitBtn.addEventListener("click", (e) => {
+    console.log("it runs")
     quizBox.style.display = "none";
     resultBox.style.display = "block";
-    const userAnswer = document.getElementById("user-answer").value;
-    let score = 0;
-    enteredAnswer.push(userAnswer.split(" "));
-    console.log(enteredAnswer[0]);
-    for (let i = 0; i < enteredAnswer[0].length; i++){
-        for (let j = 0; j < correctAnswer.length; j++){
-            if (enteredAnswer[0][i] == correctAnswer[j]) {
-                score += 2;
-            }
-            else {
-                score += 0;
-            }
-        }
-    }
-
-
     
-let totalScore = ((Number(correctAnswer.length))*2);
-let perc = 0;
-perc = Math.floor(score*100 / totalScore);
-scoreBox.innerHTML = score;
-totalQues.innerHTML = Number(correctAnswer.length);
-correctQuestion.innerHTML = score / 2;
-inCorrectQuestion.innerHTML = (enteredAnswer[0].length) - (score / 2);
-percentage.innerHTML = perc;
- if (perc >= 70) {
-     remarks.innerHTML = "PASS";
-     remarks.style.color = "green";
-    }  
- else {
-     remarks.innerHTML = "FAIL";
-     remarks.style.color = "red";
-    }
-    
-    console.log(score);
-
-   // new user
-    if (type == 1) {
-        firstOIR.style.display = "block";
-        returnOIR.style.display = "none";
-    }
-    // old user
-    else {
-        firstOIR.style.display = "none";
-        returnOIR.style.display = "block";
-    }
-
-    if (type != 1) {
-        if (score > highest) {
-            highScore[1].value = Number(score);
-           
-            console.log("thisruns");
-        }
-        else {
-            highScore[1].value = highest;
-        }
-    }
-    else {
-        highScore[0].value = score;
-    }
 });
 
 
@@ -129,8 +73,25 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
+
             timer = duration;
         }
     }, 1000);
 }
 
+// Random Img Generation 
+let random_img = Math.floor(Math.random() * 5)
+console.log(random_img)
+let img = [
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLiXlW5FkfnFj3oNJezcNVjg6d8rLlP37mbQ&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjfCqAa4pNRwtpjYR4qkMH3BVWHeRvn9Achw&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZDsH9snQGWoI-buFC2Lws7aQXwomq0jMOw&usqp=CAU',
+    'https://tpc.googlesyndication.com/simgad/12606574341937875200?sqp=4sqPyQQrQikqJwhfEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBfcAJ4AcUBLbKdPg&rs=AOga4qkc6DCHlREmPoQngmzAoxKMvAM_5g',
+    ''
+]
+/* Image number Input Box */
+const imageNumber = document.getElementById("image-number");
+imageNumber.value = random_img;
+
+const testImg = document.getElementById("test-img");
+testImg.src=img[random_img]

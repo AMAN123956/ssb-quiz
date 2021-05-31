@@ -1,0 +1,25 @@
+.mail-section{
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+.top-section{
+    margin-top:30px;
+    margin-bottom:60px;
+    text-align:center;
+}
+
+h2{
+    font-size:3.4rem;
+    color:red;
+}
+h3{
+    font-size:1.8rem;
+    color:purple;
+    text-align:center;
+}
+.top-section h3{
+    color:green;
+}
