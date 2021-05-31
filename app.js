@@ -211,6 +211,9 @@ app.get("/questionlogic", (req, res) => {
 const oirTestRoute = require('./routes/oirtest')
 app.use('/oir',oirTestRoute)
 
+// PPDTTEST SECTION
+const ppdtTestRoute = require('./routes/ppdt')
+app.use('/ppdt',ppdtTestRoute)
 
 
 
@@ -246,61 +249,8 @@ app.post("/savequestion", (req, res) => {
 })
 // OIR TEST ENDS
 // ========================================================================================
-// PPDT TEST STARTS
-app.get("/ppdthome", (req, res) => {
-  let picture = "";
-  let username = "";
-  let email = "";
-  if (req.isAuthenticated()) {
-    picture = req.user.picture;
-    username= req.user.username;
-    email=req.user.email;
-    console.log(picture);
-    res.render("ppdthome",
-      {
-        picture: picture,
-        username: username,
-        email: email
-    });
-  }  
-  else {
-    res.redirect("/login");
-  }
-  
-})
-// PPDT TEST
-app.get("/ppdttest", (req, res) => {
-  let picture = "";
-  let totalQues = 0;
-  let count = 0;
-  let highscore = 0;
-  let firstTime = 0;
-  if (req.isAuthenticated()) {
-    picture = req.user.picture;
-    // To find number of attempts 
-    Second.find({ email: req.user.email }, function (err, data) {
-      if (err) {
-        console.log(err);
-      }
-      else{
-        if (data.length == 0) {
-          count = 1;
-          firstTime = 1;
-        }
-        else {
-          count = data[0].count + 1;
-          firstTime = 0;
-          highscore = data[0].highscore;
-        }
-      }
-    })
-    res.render("ppdttest", { picture: picture, email: req.user.email, username: req.user.username,count: count, highscore: highscore, firstTime: firstTime });
-    
-  }
-  else {
-    res.redirect("/login");
-  }
-})
+
+
 
 app.get("/logout", function (req, res) {
   req.logOut();
