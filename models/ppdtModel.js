@@ -6,7 +6,9 @@ const ppdtSchema = new mongoose.Schema({
     username: String,
     picture: String,
     highscore: Number,
-    count: Number
+    count: Number,
+    imagenumber: Number,
+    answer: String
 })
 
 // Model for Second Type of Quiz Data 
