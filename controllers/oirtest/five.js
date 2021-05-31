@@ -1,4 +1,4 @@
-const { First, Third, OirTestOne, OirTestTwo, OirTestThree, OirTestFour, oirTestFive } = require('../../models/quizModel')
+const { First, Third, OirTestOne, OirTestTwo, OirTestThree, OirTestFour, OirTestFive } = require('../../models/quizModel')
 const Question = require('../../models/saveQuestion')
 
 
