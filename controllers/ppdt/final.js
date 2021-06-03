@@ -54,7 +54,7 @@ const savetest = async (req, res) => {
   });
   await entry.save();
   setTimeout(() => {
-    res.redirect("/landing");
+    res.redirect("/ppdt/result");
   }, 1000);
 }
 
