@@ -188,6 +188,18 @@ app.get("/landing", function (req, res) {
   }
 });
 
+// ssb-admin route
+
+app.get("/ssb-admin",(req,res)=>{
+  if(req.user.email===process.env.ADMIN_ID1 || req.user.email===process.env.ADMIN_ID2)
+  {
+    res.render("ssb-admin/ssb-admin",{user:req.user});
+  }
+  else{
+    res.redirect("/landing");
+  }
+})
+
 app.get("/quizsetup", (req, res) => {
   res.render("quizsetup");
 })
