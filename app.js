@@ -8,15 +8,14 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-
+const cookieSession = require("cookie-session")
 /*  const md5 = require("md5");  */
 /* const bcrypt = require("bcrypt");
  const saltRounds = 10;   */
 const app = express();
-app.use(session({
+app.use(cookieSession({
   secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false,
+  maxAge:24*60*60*60
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -190,10 +189,12 @@ app.get("/landing", function (req, res) {
 
 // ssb-admin route
 
-app.get("/ssb-admin",(req,res)=>{
+app.get("/ssb-admin",async(req,res)=>{
   if(req.user.email===process.env.ADMIN_ID1 || req.user.email===process.env.ADMIN_ID2)
   {
-    res.render("ssb-admin/ssb-admin",{user:req.user});
+    const result = await Second.find({ status: "False" })
+    console.log("res"+result)
+    await res.render("ssb-admin/ssb-admin",{user:req.user,response: result});
   }
   else{
     res.redirect("/landing");
@@ -224,7 +225,8 @@ const oirTestRoute = require('./routes/oirtest')
 app.use('/oir',oirTestRoute)
 
 // PPDTTEST SECTION
-const ppdtTestRoute = require('./routes/ppdt')
+const ppdtTestRoute = require('./routes/ppdt');
+const Second = require("./models/ppdtModel.js");
 app.use('/ppdt',ppdtTestRoute)
 
 

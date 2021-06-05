@@ -86,7 +86,35 @@ const savetest = async (req, res) => {
       res.redirect("/login");
     }
 }
+
+// PPDT RESULT SECTION
 const ppdtresult = async (req, res) => {
    res.render("ppdtresult",{name: req.user.email,picture: req.user.picture,username: req.user.username})
 }
-module.exports = {test,savetest,savereturn,ppdtresult}
+
+// PPDT ADMIN SECTION STATUS UPDATE
+const changestatus = async (req, res) => {
+  await Second.findOneAndUpdate({ email: req.body.email }, req.body, function (err, docs) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("successfully updated");
+      console.log(req.body);
+    }
+  })
+  await Data.findOneAndUpdate({ email: req.body.email }, ({ secondHighScore: req.body.highscore}), function (err, lastdocs) {
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log(lastdocs);
+    }
+  })
+  //Mail Initiation Code
+
+  // After successful update redirect to same admin page
+  await res.redirect("/ssb-admin");
+}
+
+module.exports = {test,savetest,savereturn,ppdtresult,changestatus}

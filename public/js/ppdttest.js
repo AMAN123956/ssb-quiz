@@ -8,12 +8,30 @@ const startQuiz = document.getElementById("startQuiz");
 const instructionBox = document.querySelector(".instruction-box");
 const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".result-section");
+// imageBox
+const imageBox = document.querySelector(".image-box")
+// text box 
+const textBox = document.querySelector(".text-box")
+//Default textBox should be hidden and image Box should be shown for 1 min 
+//and then image box to be hidden and text box to be shown
+
+// Time Over Box
+const timeOverBox = document.querySelector(".time-over")
+timeOverBox.style.display = "none";
+
 startQuiz.addEventListener("click", (e) => {
     instructionBox.style.display = "none";
     quizBox.style.display = "block";
-    var fiveMinutes = 60 * 5,
-    display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+    textBox.style.display = "none";
+    timeOverBox.style.display = "none";
+    setTimeout(() => {
+        imageBox.style.display = "none";
+        textBox.style.display = "block";
+        var fiveMinutes = 60 * 3,
+        display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    },10000)
+   
 })
 
 
@@ -74,7 +92,9 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
 
-            timer = duration;
+           // timer = duration;
+            quizBox.style.display = "none";
+            timeOverBox.style.display = "block";
         }
     }, 1000);
 }

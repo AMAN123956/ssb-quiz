@@ -31,9 +31,19 @@
                 <!-- About PPDT TEST SECTION -->
                 <div class="shadow my-5" style="padding:20px;">
                     <h2 class="mb-3 text-danger" style="text-decoration: underline;">WHAT IS PPDT TEST</h2>
-                    <p class="short-info text-primary" style="font-size:1.3rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem modi, eos quasi ipsa voluptas illum molestiae necessitatibus impedit incidunt voluptatibus?</p>
-                    <button class="btn btn-primary" style="text-decoration:none;outline:none;display:block;margin-left:auto;">Read More</button>
-                    <p class="detail-info text-success" style="font-size:1.3rem;display:none;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minus, quam sequi officia eveniet incidunt sunt aliquid ipsa ut assumenda itaque iure doloribus non similique, quidem ipsum. Nihil asperiores, placeat soluta numquam dicta nulla nobis iure, porro expedita dolorum velit.</p>
+                    <p class="short-info text-primary" style="font-size:1.3rem;">In this test candidates are shown a picture and are asked to write a short story based on their perception of the picture.</p>
+                    <button class="btn btn-primary" id="detail" style="text-decoration:none;outline:none;display:block;margin-left:auto;">Read More</button>
+                    <p class="detail-info text-success" style="font-size:1.3rem;display:none;">The picture will be shown for 30 sec and then 5min will be given to write a story on it.Candidates will also have to write number of character,their age,sex and mood.The instruction will be explained before the test.The story has to be  written about the situation in the picture,what led to that situation and what should be the outcome of the situation.After writing the story candidates will be given 1 minute turn by turn to narate their stories (the sheets on which the candidates wrote story would be taken away so one must remember what story they wrote at the time of narration.)Once narration is over candidates will have to discuss on it and are expected to arrive at one common story.</p>
+                    <script>
+                        const btn=document.querySelector("#detail")
+                        const detailInfo = document.querySelector(".detail-info")
+                        const shortInfo = document.querySelector(".short-info")
+                        btn.addEventListener("click",(e)=>{
+                            shortInfo.style.display="none";
+                            detailInfo.style.display="block";
+                            btn.style.display="none";
+                        })
+                    </script>
                 </div>
                 <div class="test-section shadow my-5" style="padding:20px;">
                     <h2 class="text-success mb-3 text-center" style="font-size:2.8rem;">"Practice Makes A Man Perfect"</h2>

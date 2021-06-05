@@ -34,13 +34,7 @@
                     </div>
                     <!-- First Box -->
                       <div class="instruction-box shadow">
-                        <div id="rules">
-                            <h2 style="color:#5e81cf;font-size:2.8rem;text-align:center;font-family:cursive;margin-bottom: 50px;">Instructions</h2>
-                            <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic facere, distinctio porro</p>
-                            <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quos.</p>
-                            <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic facere, distinctio porro</p>
-                            <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quos.</p>
-                        </div>
+                        <%- include('partials/oirinstruction'); -%> 
                         <button class="btn btn-danger" id="startQuiz">Start Quiz</button>
                       </div>
  
@@ -148,7 +142,7 @@
 
                       </div>
                    </div>
-                   <form action="/savefourfirstoir" id="firstOIR" method="POST">
+                   <form action="/oir/savefourfirstoir" id="firstOIR" method="POST">
                     <input type="text" name="email" value="<%= email %>" style="display:none;">
                     <input type="text" name="username" value="<%= username %>" style="display:none;">
                     <input type="text" name="picture" value="<%= picture %>" style="display:none;">
@@ -158,7 +152,7 @@
                     <button type="submit" class="saveProgress btn btn-danger shadow">Save Your Progress</button>
                     </form>
                     <!-- Returning User -->
-                    <form action="/savefourreturnoir" id="returnOIR" method="POST">
+                    <form action="/oir/savefourreturnoir" id="returnOIR" method="POST">
                     <input type="text" name="email" value="<%= email %>" style="display:none;">
                     <input type="text" name="username" value="<%= username %>" style="display:none;">
                     <input type="text" name="picture" value="<%= picture %>" style="display:none;">

@@ -25,30 +25,52 @@
                         <h3 class="text-dark mb-0">PPDT Dashboard</h3>
 
                     </div> -->
+                    <h1>ADMIN PANEL</h1>
+                    <!--Managing Admin Section -->
+                    <% 
+                    let card="";
+                    let desc="";
+                    for(let i=0; i<response.length; i++){
+                       card+=`<div class="card">
+                             <h2 class="card-heading">PPDT</h2>
+                             <button class="btn btn-primary review-btn" >Review</button>
 
-                    <!-- stories cards -->
-                    <div class="main">
-                        <ul class="list">
-                            <li class="item">
-                                <div class="card">
-                                    <div class="image">
-                                        <img src="../../images/ssb-logo.jpg" alt="">
-                                    </div>
-                                    <div class="contentt">
-                                        <h3 class="title">
-                                                Story
-                                        </h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nihil dolore voluptatum at dignissimos nemo officiis aperiam, ad soluta voluptate expedita, facere velit sequi quia. Neque nisi quibusdam repellat numquam sed beatae voluptatum atque temporibus est aut quia pariatur esse perferendis impedit molestiae, ea fuga ab maxime, dolore harum nemo eaque necessitatibus, quis placeat. Porro itaque laudantium perferendis, praesentium deleniti, in optio, eius sit velit aliquid non corporis pariatur asperiores?</p>
-                                    </div>
-                                    <div class="actions">
-                                        <button>Give Marks</button>
-                                        <button>Delete</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                       </div>`
+                       desc+=`<div class="form-box">
+                        <form action="/ppdt/changestatus" id="returnPPDT" method="POST">
+                            <input type="text" name="email" value='${response[i].email}'>
+                            <input type="text" name="username" value='${response[i].username}'>
+                            <input type="text" name="picture" value='${response[i].picture}'
+                                style="display:none;">
+                            <input type="text" name="status" value="True" style="display:none;">
+                            <!-- Value to be filled after checking whether new score is greater or less than previous best-->
+                            <input type="number" placeholder="Enter Score" class="highScore" name="highscore" required="true" value="">
+                            <input type="number" name="count" value='${response[i].count}'
+                                style="display:none;">
+                            <input id="image-number" type="number" name="imagenumber" value='${response[i].imagenumber}'
+                                style="display:none;">
+                            <textarea id="user-answer" name="answer" class="shadow"
+                                style="border:2px solid #5e81cf;padding:10px;display:block;width:90%;margin:50px auto;"
+                                value='' rows=10 cols=100>
+                               ${response[i].answer}
+                            </textarea>
+                           
+                            <button type="submit" id="submit"
+                                class="btn btn-lg btn-danger mr-5">Submit</button>
+                        </form>
                        
+                       </div>`
+                    }
+                    
+                    
+                    
+                    %>
+                    <div class="main" style="margin-top:200px;">
+                        <%- card %>
+                    </div>
+                    <div class="main" style="margin-top:100px;display:none;">
+                        <%- desc %>
+                    </div>
                   
                    
                 </div>
@@ -69,6 +91,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="js/landing.js"></script>
+    <script>
+        const reviewBtn = document.querySelectorAll(".review-btn");
+        const formBox = document.querySelectorAll(".form-box");
+        const mainBox = document.querySelectorAll(".main")
+        console.log(reviewBtn)
+        for(let i=0;i<formBox.length;i++){
+            formBox[i].style.display="none";
+        }
+
+
+        for(let i=0;i<reviewBtn.length;i++){
+        reviewBtn[i].addEventListener("click",(e)=>{
+            mainBox[0].style.display="none";
+            mainBox[1].style.display="block";
+            formBox[i].style.display="block";
+        })
+    }
+    </script>
 </body>
 
 </html>

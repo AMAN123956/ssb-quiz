@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const { ppdthome } = require('../controllers/ppdt/home')
-const {test,savetest,savereturn,ppdtresult} = require('../controllers/ppdt/final')
+const {test,savetest,savereturn,ppdtresult,changestatus} = require('../controllers/ppdt/final')
 // PPDT HOME PAGE 
 router.route('/home').get(ppdthome)
 
@@ -14,7 +14,7 @@ router.route('/savereturn').post(savereturn)
 
 
 
-
+router.route('/changestatus').post(changestatus)
 
 
 

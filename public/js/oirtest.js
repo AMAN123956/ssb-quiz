@@ -27,7 +27,7 @@ const resultBox = document.querySelector(".result-section");
 startQuiz.addEventListener("click", (e) => {
     instructionBox.style.display = "none";
     quizBox.style.display = "block";
-    var fiveMinutes = 60 * 5,
+    var fiveMinutes = 60 * 1,
     display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
 })
@@ -284,7 +284,8 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            timer = duration;
+            // After time has finished
+            submitBtn.click()
         }
     }, 1000);
 }

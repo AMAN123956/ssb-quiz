@@ -22,102 +22,119 @@
 <body id="page-top">
     <div id="wrapper">
         <%- include('partials/navbar'); -%>
-        <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-                <%- include('partials/sidebar'); -%>
-                <div class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h2 class="text-dark mb-0">PPDT TEST</h2><a
-                            class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i
-                                class="fas fa-download fa-sm text-white-50"></i>&nbsp;Read Intructions</a>
+            <div class="d-flex flex-column" id="content-wrapper">
+                <div id="content">
+                    <%- include('partials/sidebar'); -%>
+                        <div class="container-fluid">
+                            <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                                <h2 class="text-dark mb-0">PPDT TEST</h2><a
+                                    class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i
+                                        class="fas fa-download fa-sm text-white-50"></i>&nbsp;Read Intructions</a>
 
-                    </div>
-                    <!-- First Box -->
-                    <div class="instruction-box shadow">
-                        <div id="rules">
-                            <h2
-                                style="color:#5e81cf;font-size:2.8rem;text-align:center;font-family:cursive;margin-bottom: 50px;">
-                                Instructions</h2>
-                            <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic facere, distinctio porro
-                            </p>
-                            <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quos.</p>
-                            <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic facere, distinctio porro
-                            </p>
-                            <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quos.</p>
-                        </div>
-                        <button class="btn btn-danger" id="startQuiz">Start Quiz</button>
-                    </div>
-
-
-
-
-
-                    <!-- Second Box-->
-                    <!-- Stopwatch -->
-
-
-                    <!-- Question Box -->
-                    <div class="quiz-box shadow">
-                        <div style="font-size:2rem;color:red;font-weight:bolder;" id="timeSection"><i
-                                class="fa fa-clock-o" aria-hidden="true" style="color:black;font-size:2rem;"></i> <span
-                                id="time">05:00</span> min!</div>
-                        <div class="quiz-section">
-                            <h2 id="typeOfUser" style="display:none;"><%= firstTime %></h2>
-                            <h2 id="highest" style="display:none;"><%= highscore %></h2>
-                            <div class="image-box">
-                                <img id="test-img" class="shadow" style="display:block;width:80%;margin:30px auto;"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZDsH9snQGWoI-buFC2Lws7aQXwomq0jMOw&usqp=CAU"
-                                    alt="test_img">
                             </div>
-                            <div class="text-box" style="display:block;width:100%;margin:30px auto;">
-                                <!--First Time User Form-->
-                                <form action="/ppdt/savetest" id="firstPPDT" method="POST">
-                                    <input type="text" name="email" value="<%= email %>" style="display:none;">
-                                    <input type="text" name="username" value="<%= username %>" style="display:none;">
-                                    <input type="text" name="picture" value="<%= picture %>" style="display:none;">
-                                    <!-- Value to be filled after checking whether new score is greater or less than previous best-->
-                                    <input type="number" class="highScore" name="highscore" value=""
-                                        style="display:none;">
-                                    <input type="number" name="count" value="<%= count %>" style="display:none;">
-                                    <input id="image-number" type="number" name="imagenumber" value="1"
-                                        style="display:none;">
-                                    <textarea id="user-answer" name="answer" class="shadow"
-                                        placeholder="Enter Your Answer"
-                                        style="border:2px solid #5e81cf;padding:10px;display:block;width:90%;margin:50px auto;"
-                                        value="" rows=10 cols=100></textarea>
-                                    <button type="submit" id="submit" class="btn btn-lg btn-danger mr-5">Submit</button>
-                                </form>
-                                <!-- Returning user form -->
-                                <form action="/ppdt/savereturn" id="returnPPDT" method="POST">
-                                    <input type="text" name="email" value="<%= email %>" style="display:none;">
-                                    <input type="text" name="username" value="<%= username %>" style="display:none;">
-                                    <input type="text" name="picture" value="<%= picture %>" style="display:none;">
-                                    <!-- Value to be filled after checking whether new score is greater or less than previous best-->
-                                    <input type="number" class="highScore" name="highscore" value=""
-                                        style="display:none;">
-                                    <input type="number" name="count" value="<%= count %>" style="display:none;">
-                                    <input id="image-number" type="number" name="imagenumber" value="1"
-                                        style="display:none;">
-                                    <textarea id="user-answer" name="answer" class="shadow"
-                                        placeholder="Enter Your Answer"
-                                        style="border:2px solid #5e81cf;padding:10px;display:block;width:90%;margin:50px auto;"
-                                        value="" rows=10 cols=100></textarea>
-                                    <button type="submit" id="submit" class="btn btn-lg btn-danger mr-5">Submit</button>
-                                </form>
+                            <!-- First Box -->
+                            <div class="instruction-box shadow">
+                                <%- include('partials/ppdtinstruction'); -%>
+                                <button class="btn btn-danger" id="startQuiz">Start Quiz</button>
                             </div>
+
+
+
+
+
+                            <!-- Second Box-->
+                            <!-- Stopwatch -->
+
+
+                            <!-- Question Box -->
+                            <div class="quiz-box shadow">
+                                <div style="font-size:2rem;color:red;font-weight:bolder;" id="timeSection"><i
+                                        class="fa fa-clock-o" aria-hidden="true"
+                                        style="color:black;font-size:2rem;"></i> <span id="time">03:00</span> min!</div>
+                                <div class="quiz-section">
+                                    <h2 id="typeOfUser" style="display:none;">
+                                        <%= firstTime %>
+                                    </h2>
+                                    <h2 id="highest" style="display:none;">
+                                        <%= highscore %>
+                                    </h2>
+                                    <div class="image-box">
+                                        <img id="test-img" class="shadow"
+                                            style="display:block;width:80%;margin:30px auto;"
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReZDsH9snQGWoI-buFC2Lws7aQXwomq0jMOw&usqp=CAU"
+                                            alt="test_img">
+                                    </div>
+                                    <div class="text-box" style="display:block;width:100%;margin:30px auto;">
+                                        <!--First Time User Form-->
+                                        <form action="/ppdt/savetest" id="firstPPDT" method="POST">
+                                            <input type="text" name="email" value="<%= email %>" style="display:none;">
+                                            <input type="text" name="username" value="<%= username %>"
+                                                style="display:none;">
+                                            <input type="text" name="picture" value="<%= picture %>"
+                                                style="display:none;">
+                                            <input type="text" name="status" value="False" style="display:none;">
+                                            <!-- Value to be filled after checking whether new score is greater or less than previous best-->
+                                            <input type="number" class="highScore" name="highscore" value=""
+                                                style="display:none;">
+                                            <input type="number" name="count" value="<%= count %>"
+                                                style="display:none;">
+                                            <input id="image-number" type="number" name="imagenumber" value="1"
+                                                style="display:none;">
+                                            <textarea id="user-answer" name="answer" class="shadow"
+                                                placeholder="Enter Your Answer"
+                                                style="border:2px solid #5e81cf;padding:10px;display:block;width:90%;margin:50px auto;"
+                                                value="" rows=10 cols=100></textarea>
+                                            <button type="submit" id="submit"
+                                                class="btn btn-lg btn-danger mr-5">Submit</button>
+                                        </form>
+                                        <!-- Returning user form -->
+                                        <form action="/ppdt/savereturn" id="returnPPDT" method="POST">
+                                            <input type="text" name="email" value="<%= email %>" style="display:none;">
+                                            <input type="text" name="username" value="<%= username %>"
+                                                style="display:none;">
+                                            <input type="text" name="picture" value="<%= picture %>"
+                                                style="display:none;">
+                                            <input type="text" name="status" value="False" style="display:none;">
+                                            <!-- Value to be filled after checking whether new score is greater or less than previous best-->
+                                            <input type="number" class="highScore" name="highscore" value=""
+                                                style="display:none;">
+                                            <input type="number" name="count" value="<%= count %>"
+                                                style="display:none;">
+                                            <input id="image-number" type="number" name="imagenumber" value="1"
+                                                style="display:none;">
+                                            <textarea id="user-answer" name="answer" class="shadow"
+                                                placeholder="Enter Your Answer"
+                                                style="border:2px solid #5e81cf;padding:10px;display:block;width:90%;margin:50px auto;"
+                                                value="" rows=10 cols=100></textarea>
+                                            <button type="submit" id="submit"
+                                                class="btn btn-lg btn-danger mr-5">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Time Over Box-->
+                            <div class="time-over shadow"
+                                style="display:flex;flex-direction:column;
+                                align-items: center;justify-content: center;
+                                padding:15px;">
+                                <h2 style="text-align:center;color:red;font-size:3rem;">OOPS!!!</h2>
+                                <h3 style="text-align: center;color:green;font-size:2.4rem;">Your Time is Over</h3>
+                                <h3 style="text-align: center;color:black;font-size:2rem;">Sorry You couldn't Pass the Test!!!</h3>
+                                <a href="/ppdt/test" class="btn btn-primary" 
+                                style="display:block;width:50%;margin: 55px auto;">
+                                   Restart the Quiz
+                                </a>
+                            </div>
+
                         </div>
+                </div>
+                <footer class="bg-white sticky-footer">
+                    <div class="container my-auto">
+                        <div class="text-center my-auto copyright"><span>Copyright © Brand 2020</span></div>
                     </div>
-                    
-
-
-                </div>
-            </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2020</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+                </footer>
+            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
