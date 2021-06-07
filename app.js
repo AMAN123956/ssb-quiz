@@ -255,15 +255,17 @@ app.get("/findQuestion/:token", (req, res) => {
    
   })
 })
+
+// Save question page
+app.get("/quizsetup",(req,res)=>{
+ res.render("quizsetup");
+})
 // Post Request Handling for Saving questions to Database
 app.post("/savequestion", (req, res) => {
   const ques = new Question(req.body);
   ques.save();
   res.send("Successfully Saved");
 })
-// OIR TEST ENDS
-// ========================================================================================
-
 
 
 app.get("/logout", function (req, res) {
@@ -333,6 +335,6 @@ app.post("/saveData", (req,res) => {
 })
 
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("server is running on port 3000");
 });
