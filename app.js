@@ -94,7 +94,7 @@ passport.use(new GoogleStrategy({
       picture: profile.photos[0].value
     }, function (err, user) {
       console.log(user);
-      myEmail = user.email;
+     /* myEmail = user.email; */
       return cb(err, user);
     });
   }
