@@ -1,6 +1,6 @@
 <!-- [Visit our website here](https://jssconnect.herokuapp.com/) -->
 <div align="center">
-<h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">SSBQUIZ🎯🎯</span>
+<h2 style="text-align:center;font-size:53px;color:red"><span style="color:blue">SSBQUIZ 🎯🎯</span>
 </div
 
 <h3 style="text-align:center;color:yellow;font-size:1.8rem;">Be the next one to adore the uniform.</h3>
